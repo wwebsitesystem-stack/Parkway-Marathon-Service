@@ -4,14 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parkway Marathon Service | Auto Repair & Gas Station Saint Paul</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --primary: #002d62;       /* Deep Automotive Blue */
             --secondary: #d6221d;     /* Marathon Red Accent */
-            --dark: #1c2321;          /* Charcoal Body Text */
-            --light: #f4f6f8;         /* Light Grey Background */
+            --dark: #1a1e22;          /* Matte Charcoal Tech */
+            --light: #f8f9fa;         /* Crisp Light Grey */
             --white: #ffffff;
             --gray: #6c757d;
+            --success: #28a745;
         }
 
         * {
@@ -29,29 +31,37 @@
 
         /* Top Bar Info */
         .top-bar {
-            background-color: var(--primary);
+            background-color: var(--dark);
             color: var(--white);
-            font-size: 0.9rem;
-            padding: 8px 20px;
+            font-size: 0.85rem;
+            padding: 10px 20px;
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
+            border-bottom: 3px solid var(--secondary);
+        }
+
+        .top-bar-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .top-bar a {
             color: var(--white);
             text-decoration: none;
-            margin-left: 15px;
+            font-weight: 600;
+            transition: color 0.2s;
         }
 
         .top-bar a:hover {
-            text-decoration: underline;
+            color: var(--secondary);
         }
 
         /* Header Navigation */
         header {
             background-color: var(--white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -67,9 +77,13 @@
         }
 
         .logo h1 {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             color: var(--primary);
-            font-weight: 800;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .logo span {
@@ -79,80 +93,103 @@
         nav ul {
             display: flex;
             list-style: none;
+            align-items: center;
         }
 
         nav ul li {
-            margin-left: 25px;
+            margin-left: 22px;
         }
 
         nav ul li a {
             text-decoration: none;
             color: var(--dark);
             font-weight: 600;
-            transition: color 0.3s;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 4px;
         }
 
         nav ul li a:hover {
             color: var(--secondary);
+            background-color: rgba(214, 34, 29, 0.05);
         }
 
-        /* Hero Section */
+        /* Hero Section - Themed Background of Auto Mechanics */
         .hero {
-            background: linear-gradient(rgba(0, 45, 98, 0.85), rgba(0, 45, 98, 0.85)), url('https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&q=80&w=1200') no-repeat center center/cover;
+            position: relative;
+            background: linear-gradient(rgba(0, 45, 98, 0.45), rgba(28, 35, 33, 0.85)), 
+                        url('https://images.unsplash.com/photo-1616788494707-ec28f08d05a1?auto=format&fit=crop&q=80&w=1920') no-repeat center center/cover;
             color: var(--white);
-            padding: 100px 20px;
+            padding: 140px 20px;
             text-align: center;
         }
 
         .hero-content {
-            max-width: 800px;
+            max-width: 850px;
             margin: 0 auto;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
         .hero h2 {
-            font-size: 2.8rem;
+            font-size: 3.2rem;
             margin-bottom: 20px;
-            font-weight: 700;
+            font-weight: 800;
+            line-height: 1.2;
         }
 
         .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
+            font-size: 1.3rem;
+            margin-bottom: 35px;
+            opacity: 0.95;
+            font-weight: 400;
         }
 
         .cta-buttons a {
-            display: inline-block;
-            padding: 12px 30px;
-            border-radius: 4px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 35px;
+            border-radius: 5px;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 700;
             margin: 10px;
-            transition: background 0.3s;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
         .btn-primary {
             background-color: var(--secondary);
             color: var(--white);
+            border: 2px solid var(--secondary);
         }
 
         .btn-primary:hover {
             background-color: #b31b17;
+            border-color: #b31b17;
+            transform: translateY(-2px);
         }
 
         .btn-secondary {
             border: 2px solid var(--white);
             color: var(--white);
+            background-color: transparent;
         }
 
         .btn-secondary:hover {
             background-color: var(--white);
             color: var(--primary);
+            transform: translateY(-2px);
         }
 
         /* Main Layout Elements */
         section {
-            padding: 70px 20px;
+            padding: 80px 20px;
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -163,22 +200,34 @@
         }
 
         .section-title h2 {
-            font-size: 2.2rem;
+            font-size: 2.4rem;
             color: var(--primary);
+            font-weight: 800;
             position: relative;
             display: inline-block;
             padding-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
         }
 
         .section-title h2::after {
             content: '';
-            width: 60px;
-            height: 4px;
+            width: 80px;
+            height: 5px;
             background-color: var(--secondary);
             position: absolute;
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray);
+            margin-top: -35px;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
         }
 
         /* Quick Info Cards */
@@ -186,21 +235,37 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
-            margin-bottom: 40px;
+            margin-top: -40px;
+            position: relative;
+            z-index: 10;
         }
 
         .feature-card {
             background: var(--white);
-            padding: 30px;
-            border-radius: 6px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            border-top: 4px solid var(--primary);
+            padding: 40px 30px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-bottom: 4px solid var(--primary);
             text-align: center;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-bottom-color: var(--secondary);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
         }
 
         .feature-card h3 {
             margin-bottom: 15px;
             color: var(--primary);
+            font-size: 1.3rem;
+            font-weight: 700;
         }
 
         /* Services Grid */
@@ -214,15 +279,20 @@
             background: var(--white);
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+            border: 1px solid rgba(0,0,0,0.05);
         }
 
         .service-header {
             background-color: var(--primary);
             color: var(--white);
-            padding: 20px;
-            font-size: 1.3rem;
-            font-weight: 600;
+            padding: 22px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 3px solid var(--secondary);
         }
 
         .service-list {
@@ -231,10 +301,9 @@
         }
 
         .service-list li {
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f2f5;
             display: flex;
-            justify-content: space-between;
             align-items: center;
         }
 
@@ -242,58 +311,109 @@
             border-bottom: none;
         }
 
-        .service-list li::before {
-            content: "✓";
-            color: var(--secondary);
-            font-weight: bold;
-            margin-right: 10px;
+        .service-list li i {
+            color: var(--success);
+            margin-right: 12px;
+            font-size: 1.1rem;
         }
 
         .service-list span {
-            flex-grow: 1;
+            font-weight: 500;
+            color: #495057;
         }
 
         /* Station Amenities */
-        .amenities-section {
-            background-color: #eef2f5;
-            padding: 60px 20px;
-            border-radius: 8px;
-            margin-top: 20px;
+        .station-bg {
+            background-color: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.02);
+            padding: 50px 30px;
         }
 
         .amenities-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 20px;
-            text-align: center;
+            margin-top: 20px;
         }
 
         .amenity-item {
-            background: var(--white);
+            background: var(--light);
             padding: 20px;
             border-radius: 6px;
             font-weight: 600;
             color: var(--primary);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-left: 4px solid var(--primary);
+            transition: all 0.2s ease;
+        }
+
+        .amenity-item:hover {
+            background: var(--white);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-left-color: var(--secondary);
+        }
+
+        .amenity-item i {
+            font-size: 1.2rem;
+            color: var(--secondary);
         }
 
         /* About Section */
         .about-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 40px;
+            gap: 50px;
             align-items: center;
         }
 
         .about-text h3 {
             color: var(--primary);
-            margin-bottom: 15px;
-            font-size: 1.5rem;
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+            font-weight: 700;
         }
 
         .about-text p {
-            margin-bottom: 15px;
-            color: #555;
+            margin-bottom: 20px;
+            color: #5a626a;
+            font-size: 1.05rem;
+        }
+
+        .about-stats {
+            background: linear-gradient(135deg, var(--primary) 0%, #001f42 100%);
+            color: white;
+            padding: 45px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,45,98,0.2);
+        }
+
+        .about-stats h3 {
+            color: var(--white);
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 10px;
+        }
+
+        .about-stats ul li {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .about-stats ul li:last-child {
+            margin-bottom: 0;
+        }
+
+        .about-stats ul li i {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            margin-top: 4px;
         }
 
         /* Coupons / Special Offers */
@@ -305,27 +425,69 @@
 
         .coupon-card {
             border: 2px dashed var(--secondary);
-            background-color: #fff9f9;
-            padding: 30px;
-            border-radius: 8px;
+            background-color: #fffdfd;
+            padding: 35px 30px;
+            border-radius: 10px;
             text-align: center;
             position: relative;
+            box-shadow: 0 5px 15px rgba(214,34,29,0.02);
+            transition: transform 0.3s ease;
+        }
+
+        .coupon-card:hover {
+            transform: scale(1.02);
+        }
+
+        .coupon-card::before, .coupon-card::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--light);
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .coupon-card::before { left: -12px; border-right: 2px dashed var(--secondary); }
+        .coupon-card::after { right: -12px; border-left: 2px dashed var(--secondary); }
+
+        .coupon-tag {
+            background-color: rgba(214, 34, 29, 0.1);
+            color: var(--secondary);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 15px;
         }
 
         .coupon-card h3 {
             color: var(--secondary);
-            font-size: 1.6rem;
+            font-size: 2rem;
             margin-bottom: 10px;
+            font-weight: 800;
         }
 
         .coupon-card p {
             margin-bottom: 15px;
-            font-weight: 500;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .coupon-details {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 20px;
         }
 
         .coupon-expiry {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--gray);
+            border-top: 1px dashed #ddd;
+            padding-top: 15px;
+            font-style: italic;
         }
 
         /* Contact Layout */
@@ -337,43 +499,58 @@
 
         .info-panel {
             background: var(--white);
-            padding: 30px;
+            padding: 40px;
             border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.04);
         }
 
         .info-group {
-            margin-bottom: 25px;
+            margin-bottom: 30px;
+            display: flex;
+            gap: 15px;
         }
 
-        .info-group h4 {
+        .info-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-icon {
+            font-size: 1.5rem;
             color: var(--primary);
-            margin-bottom: 8px;
-            font-size: 1.1rem;
+            margin-top: 3px;
         }
 
-        .info-group p {
+        .info-text h4 {
+            color: var(--primary);
+            margin-bottom: 6px;
+            font-size: 1.15rem;
+            font-weight: 700;
+        }
+
+        .info-text p {
             color: #555;
         }
 
         .map-wrapper {
-            background: #eee;
+            background: #eef1f4;
             border-radius: 8px;
             overflow: hidden;
-            min-height: 350px;
+            min-height: 380px;
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
-            border: 1px solid #ddd;
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.04);
         }
 
         /* Footer */
         footer {
-            background-color: var(--primary);
+            background-color: var(--dark);
             color: var(--white);
-            padding: 40px 20px 20px 20px;
-            margin-top: 60px;
+            padding: 60px 20px 25px 20px;
+            margin-top: 80px;
+            border-top: 5px solid var(--secondary);
         }
 
         .footer-content {
@@ -381,22 +558,25 @@
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding-bottom: 30px;
-            margin-bottom: 20px;
+            gap: 40px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            padding-bottom: 40px;
+            margin-bottom: 25px;
         }
 
         .footer-box h4 {
             font-size: 1.2rem;
-            margin-bottom: 15px;
-            border-left: 3px solid var(--secondary);
-            padding-left: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--secondary);
+            padding-left: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .footer-box p, .footer-box ul {
+        .footer-box p {
             font-size: 0.95rem;
-            opacity: 0.8;
+            opacity: 0.75;
+            line-height: 1.7;
         }
 
         .footer-box ul {
@@ -404,24 +584,40 @@
         }
 
         .footer-box ul li {
-            margin-bottom: 8px;
+            margin-bottom: 12px;
         }
 
         .footer-box ul li a {
             color: var(--white);
             text-decoration: none;
+            opacity: 0.75;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .footer-box ul li a:hover {
-            text-decoration: underline;
+            opacity: 1;
+            color: var(--secondary);
+            padding-left: 4px;
         }
 
         .footer-bottom {
             text-align: center;
-            font-size: 0.9rem;
-            opacity: 0.7;
+            font-size: 0.85rem;
+            opacity: 0.6;
             max-width: 1200px;
             margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        @media (max-width: 992px) {
+            nav ul { display: none; } /* Add toggle menu functionality here if needed */
+            .hero h2 { font-size: 2.4rem; }
         }
 
         @media (max-width: 768px) {
@@ -429,19 +625,14 @@
                 flex-direction: column;
                 gap: 15px;
             }
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            nav ul li {
-                margin: 5px 10px;
-            }
             .top-bar {
                 justify-content: center;
-                gap: 10px;
+                gap: 12px;
             }
-            .hero h2 {
-                font-size: 2rem;
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                justify-content: center;
             }
         }
     </style>
@@ -449,25 +640,29 @@
 <body>
 
     <div class="top-bar">
-        <div>📍 Parkway Marathon Service | Saint Paul, MN</div>
-        <div>
-            📞 Service Desk: <a href="tel:651-555-0190">(651) 555-0190</a>
+        <div class="top-bar-item">
+            <i class="fa-solid fa-location-dot" style="color: var(--secondary)"></i> 
+            <span>Parkway Marathon Service | Saint Paul, MN</span>
+        </div>
+        <div class="top-bar-item">
+            <i class="fa-solid fa-phone" style="color: var(--secondary)"></i>
+            <span>Service Counter: <a href="tel:651-555-0190">(651) 555-0190</a></span>
         </div>
     </div>
 
     <header>
         <div class="nav-container">
             <div class="logo">
-                <h1>PARKWAY <span>MARATHON</span> SERVICE</h1>
+                <h1><i class="fa-solid fa-wrench"></i> PARKWAY <span>MARATHON</span></h1>
             </div>
             <nav>
                 <ul>
                     <li><a href="#home">Home</a></li>
                     <li><a href="#services">Auto Repair</a></li>
-                    <li><a href="#station">Station & Amenities</a></li>
-                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#station">Station amenities</a></li>
+                    <li><a href="#about">About</a></li>
                     <li><a href="#specials">Specials</a></li>
-                    <li><a href="#contact">Contact & Hours</a></li>
+                    <li><a href="#contact">Hours & Location</a></li>
                 </ul>
             </nav>
         </div>
@@ -478,25 +673,28 @@
             <h2>Complete Auto Care & Quality Marathon Fuel in Saint Paul</h2>
             <p>From precision diagnostics and scheduled maintenance to topping off your tank for the morning commute, Parkway Marathon Service is your trusted community automotive partner.</p>
             <div class="cta-buttons">
-                <a href="tel:651-555-0190" class="btn-primary">Call Repair Shop</a>
-                <a href="#contact" class="btn-secondary">View Location & Hours</a>
+                <a href="tel:651-555-0190" class="btn-primary"><i class="fa-solid fa-phone-flip"></i> Call Repair Shop</a>
+                <a href="#contact" class="btn-secondary"><i class="fa-solid fa-calendar-days"></i> View Hours & Location</a>
             </div>
         </div>
     </div>
 
-    <section>
+    <section style="padding-top: 0;">
         <div class="features-grid">
             <div class="feature-card">
-                <h3>Certified Technicians</h3>
+                <div class="feature-icon"><i class="fa-solid fa-user-check"></i></div>
+                <h3>ASE Certified Technicians</h3>
                 <p>Our experienced mechanics handle foreign and domestic models with factory-level precision and up-to-date diagnostic tools.</p>
             </div>
             <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-gas-pump"></i></div>
                 <h3>Quality Fuel Selection</h3>
                 <p>Marathon fuel helps keep your engine running efficiently, optimizing your vehicle's performance and gas mileage.</p>
             </div>
             <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
                 <h3>Transparent Estimates</h3>
-                <p>We pride ourselves on clear diagnostic explanations, honest pricing, and professional community care.</p>
+                <p>We pride ourselves on clear diagnostic explanations, honest upfront pricing, and professional community care.</p>
             </div>
         </div>
     </section>
@@ -504,72 +702,72 @@
     <section id="services">
         <div class="section-title">
             <h2>Our Auto Repair Services</h2>
-            <p style="text-align: center; color: var(--gray); margin-top: -30px; margin-bottom: 30px;">Comprehensive mechanical diagnostics, repair, and regular vehicle maintenance.</p>
         </div>
+        <p class="section-subtitle">Comprehensive mechanical diagnostics, repair, and regular vehicle maintenance.</p>
 
         <div class="services-container">
             <div class="service-category">
-                <div class="service-header">Routine Maintenance</div>
+                <div class="service-header"><i class="fa-solid fa-oil-can"></i> Routine Maintenance</div>
                 <ul class="service-list">
-                    <li><span>Lube, Oil & Filter Changes</span></li>
-                    <li><span>Tire Rotations & Balancing</span></li>
-                    <li><span>Fluid Flushes (Brake, Coolant, Trans)</span></li>
-                    <li><span>Multi-Point Safety Inspections</span></li>
-                    <li><span>Windshield Wiper & Bulb Replacements</span></li>
+                    <li><i class="fa-solid fa-circle-check"></i> <span>Lube, Oil & Filter Changes</span></li>
+                    <li><i class="fa-solid fa-circle-check"></i> <span>Tire Rotations & Balancing</span></li>
+                    <li><i class="fa-solid fa-circle-check"></i> <span>Fluid Flushes (Brake, Coolant, Trans)</span></li>
+                    <li><i class="fa-solid fa-circle-check"></i> <span>Multi-Point Safety Inspections</span></li>
+                    <li><i class="fa-solid fa-circle-check"></i> <span>Windshield Wiper & Bulb Replacements</span></li>
                 </ul>
             </div>
 
             <div class="service-category">
-                <div class="service-header">Brakes & Suspension</div>
+                <div class="service-header"><i class="fa-solid fa-car-rear"></i> Brakes & Suspension</div>
                 <ul class="service-list">
-                    <li><span>Brake Pad & Rotor Replacement</span></li>
-                    <li><span>Brake Line & Caliper Repairs</span></li>
-                    <li><span>Shocks, Struts & Springs</span></li>
-                    <li><span>Steering & Suspension Care</span></li>
-                    <li><span>Wheel Alignment Checks</span></li>
+                    <li><i class="fa-solid fa-circle-check"></i> <span>Brake Pad & Rotor Replacement</span></li>
+                    <li><i class="fa-solid fa-circle-check"></i> <span>Brake Line & Caliper Repairs</span></li>
+                    <li><i class="fa-solid fa-circle-check"></i> <span>Shocks, Struts & Springs</span></li>
+                    <li><i class="fa-solid fa-circle-check"></i> <span>Steering & Suspension Care</span></li>
+                    <li><i class="fa-solid fa-circle-check"></i> <span>Wheel Alignment Checks</span></li>
                 </ul>
             </div>
 
             <div class="service-category">
-                <div class="service-header">Engine & Diagnostics</div>
+                <div class="service-header"><i class="fa-solid fa-microchip"></i> Engine & Diagnostics</div>
                 <ul class="service-list">
-                    <li><span>Check Engine Light Diagnostics</span></li>
-                    <li><span>Battery Testing & Replacement</span></li>
-                    <li><span>Alternators & Starter Motors</span></li>
-                    <li><span>Spark Plugs & Ignition Tuning</span></li>
-                    <li><span>Belt & Hose Replacements</span></li>
+                    <li><i class="fa-solid fa-circle-check"></i> <span>Check Engine Light Diagnostics</span></li>
+                    <li><i class="fa-solid fa-circle-check"></i> <span>Battery Testing & Replacement</span></li>
+                    <li><i class="fa-solid fa-circle-check"></i> <span>Alternators & Starter Motors</span></li>
+                    <li><i class="fa-solid fa-circle-check"></i> <span>Spark Plugs & Ignition Tuning</span></li>
+                    <li><i class="fa-solid fa-circle-check"></i> <span>Belt & Hose Replacements</span></li>
                 </ul>
             </div>
 
             <div class="service-category">
-                <div class="service-header">Climate & Mechanical Systems</div>
+                <div class="service-header"><i class="fa-solid fa-snowflake"></i> Climate & Exhaust</div>
                 <ul class="service-list">
-                    <li><span>Heating & Air Conditioning (A/C) Service</span></li>
-                    <li><span>Cooling System & Radiator Fixes</span></li>
-                    <li><span>Exhaust & Muffler Assemblies</span></li>
-                    <li><span>Fuel Pump Repairs</span></li>
-                    <li><span>Water Pump Replacement</span></li>
+                    <li><i class="fa-solid fa-circle-check"></i> <span>Heating & A/C System Service</span></li>
+                    <li><i class="fa-solid fa-circle-check"></i> <span>Cooling System & Radiator Fixes</span></li>
+                    <li><i class="fa-solid fa-circle-check"></i> <span>Exhaust & Muffler Assemblies</span></li>
+                    <li><i class="fa-solid fa-circle-check"></i> <span>Fuel Pump Repairs</span></li>
+                    <li><i class="fa-solid fa-circle-check"></i> <span>Water Pump Replacement</span></li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <section id="station" style="background-color: var(--white); border-radius: 8px; margin-top: 40px; margin-bottom: 40px;">
-        <div class="section-title">
-            <h2>Marathon Station & Amenities</h2>
-            <p style="text-align: center; color: var(--gray); margin-top: -30px; margin-bottom: 30px;">Clean facilities, premium fuel options, and everyday essentials for your drive.</p>
-        </div>
+    <section id="station">
+        <div class="station-bg">
+            <div class="section-title">
+                <h2>Marathon Station & Amenities</h2>
+            </div>
+            <p class="section-subtitle">Clean facilities, premium fuel options, and everyday essentials for your drive.</p>
 
-        <div class="amenities-section">
             <div class="amenities-grid">
-                <div class="amenity-item">Regular, Plus, Premium Unleaded</div>
-                <div class="amenity-item">Marathon Diesel Fuel</div>
-                <div class="amenity-item">Propane Exchange</div>
-                <div class="amenity-item">Air & Water Station</div>
-                <div class="amenity-item">Fresh Coffee & Quick Snacks</div>
-                <div class="amenity-item">Cold Beverages & Ice</div>
-                <div class="amenity-item">ATM On-Site</div>
-                <div class="amenity-item">Clean Public Restrooms</div>
+                <div class="amenity-item"><i class="fa-solid fa-gas-pump"></i> Regular, Plus, Premium Fuel</div>
+                <div class="amenity-item"><i class="fa-solid fa-truck"></i> Marathon Diesel Fuel</div>
+                <div class="amenity-item"><i class="fa-solid fa-fire-burner"></i> Propane Exchange</div>
+                <div class="amenity-item"><i class="fa-solid fa-wind"></i> Air & Water Station</div>
+                <div class="amenity-item"><i class="fa-solid fa-mug-hot"></i> Fresh Coffee & Quick Snacks</div>
+                <div class="amenity-item"><i class="fa-solid fa-snowflake"></i> Cold Beverages & Ice</div>
+                <div class="amenity-item"><i class="fa-solid fa-credit-card"></i> ATM On-Site</div>
+                <div class="amenity-item"><i class="fa-solid fa-restroom"></i> Clean Public Restrooms</div>
             </div>
         </div>
     </section>
@@ -585,12 +783,21 @@
                 <p>Whether you need a quick inspection before a weekend trip, advanced engine diagnostics, or simply a quick morning fill-up, our team approaches every task with a focus on safety and vehicle longevity.</p>
                 <p>We invest in modern diagnostic scanning equipment and ongoing technical training to ensure your vehicle receives precise, durable maintenance that satisfies manufacturer standards.</p>
             </div>
-            <div class="about-stats" style="background: var(--primary); color: white; padding: 40px; border-radius: 8px;">
-                <h3 style="color: var(--secondary); margin-bottom: 20px;">Why Choose Parkway?</h3>
+            <div class="about-stats">
+                <h3>Why Choose Parkway Auto?</h3>
                 <ul style="list-style: none;">
-                    <li style="margin-bottom: 15px;"><strong>Local Fleet Services:</strong> We handle scheduled maintenance for local businesses and commercial vehicles.</li>
-                    <li style="margin-bottom: 15px;"><strong>Quality Parts:</strong> We utilize premium components designed for durable performance.</li>
-                    <li style="margin-bottom: 15px;"><strong>Community Minded:</strong> Proudly locally operated, providing friendly, honest service year-round.</li>
+                    <li>
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <div><strong>Local Fleet Services:</strong> We handle scheduled maintenance for local businesses and commercial vehicles.</div>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-gears"></i>
+                        <div><strong>Quality Parts:</strong> We utilize premium components designed for durable performance.</div>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-handshake"></i>
+                        <div><strong>Community Minded:</strong> Proudly locally operated, providing friendly, honest service year-round.</div>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -599,28 +806,31 @@
     <section id="specials">
         <div class="section-title">
             <h2>Current Service Specials</h2>
-            <p style="text-align: center; color: var(--gray); margin-top: -30px; margin-bottom: 30px;">Mention these online specials to your service advisor or display them on your mobile device to save.</p>
         </div>
+        <p class="section-subtitle">Mention these online specials to your service advisor or display them on your mobile device to save.</p>
 
         <div class="offers-grid">
             <div class="coupon-card">
+                <div class="coupon-tag">Maintenance Special</div>
                 <h3>$10 OFF</h3>
                 <p>Full Synthetic Oil Change Service</p>
-                <p style="font-size: 0.9rem; color: #555;">Includes a multi-point visual safety check and under-hood fluid top-off.</p>
+                <div class="coupon-details">Includes a multi-point visual safety check and under-hood fluid top-off.</div>
                 <div class="coupon-expiry">Cannot combine with other offers. Valid during standard shop hours.</div>
             </div>
 
             <div class="coupon-card">
-                <h3>COMPLIMENTARY</h3>
+                <div class="coupon-tag">Diagnostic Special</div>
+                <h3>FREE</h3>
                 <p>Check Engine Light Code Read</p>
-                <p style="font-size: 0.9rem; color: #555;">Get a quick reading of the active diagnostic trouble codes causing your dashboard light to illuminate.</p>
+                <div class="coupon-details">Get a quick reading of the active diagnostic trouble codes causing your dashboard light to illuminate.</div>
                 <div class="coupon-expiry">Further mechanical troubleshooting extra if required.</div>
             </div>
 
             <div class="coupon-card">
+                <div class="coupon-tag">Major Repair Deal</div>
                 <h3>$25 OFF</h3>
                 <p>Any Repair Service Over $250</p>
-                <p style="font-size: 0.9rem; color: #555;">Applies to major brake jobs, steering components, or suspension work.</p>
+                <div class="coupon-details">Applies to major brake jobs, steering components, or suspension mechanical work.</div>
                 <div class="coupon-expiry">Limit one per customer. Please present coupon prior to checkout.</div>
             </div>
         </div>
@@ -634,30 +844,40 @@
         <div class="contact-container">
             <div class="info-panel">
                 <div class="info-group">
-                    <h4>Repair Shop Hours</h4>
-                    <p>Monday - Friday: 7:30 AM - 5:30 PM</p>
-                    <p>Saturday: 8:00 AM - 1:00 PM</p>
-                    <p>Sunday: Closed</p>
+                    <div class="info-icon"><i class="fa-solid fa-warehouse"></i></div>
+                    <div class="info-text">
+                        <h4>Repair Shop Hours</h4>
+                        <p>Monday - Friday: 7:30 AM - 5:30 PM</p>
+                        <p>Saturday: 8:00 AM - 1:00 PM</p>
+                        <p>Sunday: Closed</p>
+                    </div>
                 </div>
 
                 <div class="info-group">
-                    <h4>Station Store Hours</h4>
-                    <p>Monday - Saturday: 6:00 AM - 10:00 PM</p>
-                    <p>Sunday: 7:00 AM - 9:00 PM</p>
+                    <div class="info-icon"><i class="fa-solid fa-store"></i></div>
+                    <div class="info-text">
+                        <h4>Station Store Hours</h4>
+                        <p>Monday - Saturday: 6:00 AM - 10:00 PM</p>
+                        <p>Sunday: 7:00 AM - 9:00 PM</p>
+                    </div>
                 </div>
 
                 <div class="info-group">
-                    <h4>Our Location</h4>
-                    <p><strong>Parkway Marathon Service</strong></p>
-                    <p>Saint Paul, MN</p>
-                    <p style="margin-top: 10px; font-size: 0.9rem; color: var(--gray);"><em>Conveniently located for easy access off local Saint Paul parkways and thoroughfares.</em></p>
+                    <div class="info-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+                    <div class="info-text">
+                        <h4>Our Location</h4>
+                        <p><strong>Parkway Marathon Service</strong></p>
+                        <p>Saint Paul, MN</p>
+                        <p style="margin-top: 10px; font-size: 0.9rem; color: var(--gray);"><em>Conveniently located for easy access off local Saint Paul parkways and thoroughfares.</em></p>
+                    </div>
                 </div>
             </div>
 
             <div class="map-wrapper">
-                <div style="padding: 20px;">
+                <div style="padding: 30px;">
+                    <i class="fa-solid fa-earth-americas" style="font-size: 3rem; color: var(--primary); margin-bottom: 15px;"></i>
                     <p style="font-weight: bold; margin-bottom: 10px; color: var(--primary);">Google Maps Integration Area</p>
-                    <p style="font-size: 0.9rem; color: #666; max-width: 300px;">To display an interactive map, you can easily replace this placeholder block with an embed code generated from Google Maps for your precise Saint Paul street address.</p>
+                    <p style="font-size: 0.9rem; color: #666; max-width: 320px; margin: 0 auto;">To display an interactive map, you can easily replace this placeholder block with an embed code generated from Google Maps for your precise Saint Paul street address.</p>
                 </div>
             </div>
         </div>
@@ -672,20 +892,21 @@
             <div class="footer-box">
                 <h4>Quick Links</h4>
                 <ul>
-                    <li><a href="#home">Home Base</a></li>
-                    <li><a href="#services">Repair Menus</a></li>
-                    <li><a href="#station">Station & Store</a></li>
-                    <li><a href="#specials">Current Savings</a></li>
+                    <li><a href="#home"><i class="fa-solid fa-chevron-right" style="font-size: 0.7rem;"></i> Home Base</a></li>
+                    <li><a href="#services"><i class="fa-solid fa-chevron-right" style="font-size: 0.7rem;"></i> Repair Menus</a></li>
+                    <li><a href="#station"><i class="fa-solid fa-chevron-right" style="font-size: 0.7rem;"></i> Station & Store</a></li>
+                    <li><a href="#specials"><i class="fa-solid fa-chevron-right" style="font-size: 0.7rem;"></i> Current Savings</a></li>
                 </ul>
             </div>
             <div class="footer-box">
                 <h4>Contact Info</h4>
-                <p>Service Counter: (651) 555-0190</p>
-                <p>Location: Saint Paul, MN</p>
+                <p style="margin-bottom: 8px;"><i class="fa-solid fa-phone" style="color: var(--secondary)"></i> Counter: (651) 555-0190</p>
+                <p><i class="fa-solid fa-location-dot" style="color: var(--secondary)"></i> Location: Saint Paul, MN</p>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 Parkway Marathon Service. All Rights Reserved. All third-party trademarks belong to their respective corporate owners.</p>
+            <p>&copy; 2026 Parkway Marathon Service. All Rights Reserved.</p>
+            <p>All third-party trademarks belong to their respective corporate owners.</p>
         </div>
     </footer>
 

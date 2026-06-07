@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Parkway Marathon Premium Auto Care</title>
+<title>Parkway Marathon - Premium Auto Care</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <style>
@@ -23,22 +23,61 @@ html{
 }
 
 body{
-    font-family:'Inter',sans-serif;
-    background:#08111f;
+    font-family:'Sora',sans-serif;
+    background:linear-gradient(135deg, #050810 0%, #0a0f1f 50%, #050810 100%);
     color:white;
     overflow-x:hidden;
+    position:relative;
 }
 
-/* NAV */
+body::before{
+    content:'';
+    position:fixed;
+    top:0;
+    left:0;
+    width:200%;
+    height:200%;
+    background:
+        radial-gradient(circle at 20% 50%, rgba(255,59,48,0.04) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255,215,0,0.02) 0%, transparent 50%),
+        radial-gradient(circle at 40% 20%, rgba(100,200,255,0.02) 0%, transparent 50%);
+    animation:driftBg 20s cubic-bezier(0.4,0,0.2,1) infinite;
+    pointer-events:none;
+    z-index:-1;
+}
+
+@keyframes driftBg {
+    0%, 100% { transform:translate(0, 0); }
+    25% { transform:translate(-30px, -40px); }
+    50% { transform:translate(-60px, 0); }
+    75% { transform:translate(-30px, 40px); }
+}
+
+/* HEADER & NAV */
 
 header{
     position:fixed;
     top:0;
     width:100%;
     z-index:999;
-    background:rgba(8,17,31,.8);
-    backdrop-filter:blur(18px);
-    border-bottom:1px solid rgba(255,255,255,.08);
+    background:linear-gradient(180deg, rgba(5,8,16,.8) 0%, rgba(10,15,31,.5) 100%);
+    backdrop-filter:blur(40px);
+    border-bottom:1px solid rgba(255,59,48,.12);
+    animation:headerSlide 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow:0 4px 20px rgba(0,0,0,.3);
+}
+
+@keyframes headerSlide {
+    from {
+        opacity:0;
+        transform:translateY(-30px);
+        filter:blur(10px);
+    }
+    to {
+        opacity:1;
+        transform:translateY(0);
+        filter:blur(0);
+    }
 }
 
 .nav{
@@ -47,32 +86,89 @@ header{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:20px;
+    padding:24px;
+    position:relative;
+}
+
+.nav::after{
+    content:'';
+    position:absolute;
+    bottom:0;
+    left:20px;
+    right:20px;
+    height:1px;
+    background:linear-gradient(90deg, transparent, rgba(255,59,48,.15), transparent);
 }
 
 .logo{
+    font-family:'Playfair Display',serif;
     font-size:2rem;
-    font-weight:900;
+    font-weight:800;
+    letter-spacing:-0.8px;
+    background:linear-gradient(135deg, #ffffff, rgba(255,255,255,.8));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+    position:relative;
+    z-index:1;
 }
 
 .logo span{
     color:#ff3b30;
+    display:inline-block;
+    filter:drop-shadow(0 0 10px rgba(255,59,48,.3));
 }
 
 nav{
     display:flex;
-    gap:30px;
+    gap:60px;
+    position:relative;
+    z-index:1;
 }
 
 nav a{
-    color:white;
+    color:rgba(255,255,255,.8);
     text-decoration:none;
-    font-weight:600;
-    transition:.3s;
+    font-weight:500;
+    transition:.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position:relative;
+    font-size:.95rem;
+    letter-spacing:0.4px;
+}
+
+nav a::before{
+    content:'';
+    position:absolute;
+    bottom:-8px;
+    left:0;
+    width:0;
+    height:2px;
+    background:linear-gradient(90deg, #ff3b30, #ff6b63, transparent);
+    transition:.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+nav a::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:rgba(255,59,48,.05);
+    border-radius:6px;
+    opacity:0;
+    transition:.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index:-1;
 }
 
 nav a:hover{
-    color:#ff3b30;
+    color:#ffffff;
+    transform:translateY(-3px);
+}
+
+nav a:hover::before{
+    width:100%;
+}
+
+nav a:hover::after{
+    opacity:1;
 }
 
 /* HERO */
@@ -85,22 +181,54 @@ nav a:hover{
     padding:140px 20px 80px;
     position:relative;
     overflow:hidden;
-    background:
-    radial-gradient(circle at top right, rgba(255,59,48,.35), transparent 30%),
-    radial-gradient(circle at bottom left, rgba(255,215,0,.15), transparent 30%),
-    linear-gradient(135deg,#08111f,#10243d);
+    background:linear-gradient(135deg, rgba(5,8,16,0.98), rgba(10,20,40,0.98));
 }
 
 .hero::before{
     content:'';
     position:absolute;
-    width:500px;
-    height:500px;
-    background:#ff3b30;
-    filter:blur(180px);
-    opacity:.15;
-    top:-150px;
-    right:-150px;
+    width:1000px;
+    height:1000px;
+    background:radial-gradient(circle, rgba(255,59,48,.12), transparent);
+    filter:blur(120px);
+    top:-400px;
+    right:-300px;
+    animation:orbitSlow 15s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.hero::after{
+    content:'';
+    position:absolute;
+    width:800px;
+    height:800px;
+    background:radial-gradient(circle, rgba(255,215,0,.08), transparent);
+    filter:blur(100px);
+    bottom:-300px;
+    left:-200px;
+    animation:orbitSlow 18s cubic-bezier(0.4, 0.0, 0.2, 1) infinite 2s reverse;
+}
+
+@keyframes orbitSlow {
+    0% { transform:translate(0, 0) rotate(0deg); }
+    50% { transform:translate(50px, -60px) rotate(180deg); }
+    100% { transform:translate(0, 0) rotate(360deg); }
+}
+
+.hero-grid{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background-image:
+        linear-gradient(rgba(255,59,48,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,59,48,.03) 1px, transparent 1px);
+    background-size:80px 80px;
+    animation:slideGrid 20s linear infinite;
+    opacity:0.5;
+}
+
+@keyframes slideGrid {
+    0% { transform:translateY(0); }
+    100% { transform:translateY(80px); }
 }
 
 .hero-content{
@@ -108,96 +236,239 @@ nav a:hover{
     text-align:center;
     position:relative;
     z-index:2;
+    animation:fadeUpHero 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
+}
+
+@keyframes fadeUpHero {
+    from {
+        opacity:0;
+        transform:translateY(50px) scale(0.95);
+    }
+    to {
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
 }
 
 .badge{
     display:inline-block;
-    padding:12px 22px;
-    border-radius:999px;
-    background:rgba(255,255,255,.08);
-    border:1px solid rgba(255,255,255,.08);
-    margin-bottom:30px;
-    font-size:.85rem;
-    letter-spacing:1px;
+    padding:13px 32px;
+    border-radius:50px;
+    background:linear-gradient(135deg, rgba(255,59,48,.12), rgba(255,59,48,.06));
+    border:1px solid rgba(255,59,48,.28);
+    margin-bottom:45px;
+    font-size:.8rem;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    font-weight:700;
+    animation:slideInDown 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s both;
+    box-shadow:0 0 20px rgba(255,59,48,.08);
+}
+
+@keyframes slideInDown {
+    from {
+        opacity:0;
+        transform:translateY(-25px) scale(0.9);
+    }
+    to {
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
 }
 
 .hero h1{
-    font-size:5.5rem;
-    line-height:1;
+    font-family:'Playfair Display',serif;
+    font-size:7rem;
+    line-height:1.02;
     font-weight:900;
-    margin-bottom:30px;
+    margin-bottom:35px;
+    background:linear-gradient(135deg, #ffffff 0%, rgba(255,255,255,.85) 50%, rgba(255,200,200,.9) 100%);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+    animation:slideInDown 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s both;
+    letter-spacing:-2px;
+    filter:drop-shadow(0 10px 30px rgba(255,59,48,.15));
 }
 
 .hero p{
-    color:#cbd5e1;
+    color:rgba(255,255,255,.78);
     max-width:800px;
     margin:auto;
     font-size:1.2rem;
-    line-height:1.8;
-    margin-bottom:45px;
+    line-height:1.9;
+    margin-bottom:60px;
+    animation:slideInDown 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.25s both;
+    font-weight:300;
+    letter-spacing:0.5px;
 }
 
 .hero-buttons{
     display:flex;
     justify-content:center;
-    gap:20px;
+    gap:28px;
     flex-wrap:wrap;
+    margin-bottom:100px;
+    animation:slideInDown 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.35s both;
 }
 
 .btn{
-    padding:18px 38px;
-    border-radius:18px;
+    padding:18px 48px;
+    border-radius:50px;
     text-decoration:none;
-    font-weight:800;
-    transition:.3s;
+    font-weight:700;
+    transition:.8s cubic-bezier(0.34, 1.56, 0.64, 1);
     display:inline-flex;
     align-items:center;
-    gap:12px;
+    justify-content:center;
+    gap:14px;
+    font-size:.97rem;
+    cursor:pointer;
+    border:none;
+    position:relative;
+    overflow:hidden;
+    letter-spacing:0.4px;
+}
+
+.btn::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:radial-gradient(circle at 30% 30%, rgba(255,255,255,.3), transparent);
+    opacity:0;
+    transition:.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    pointer-events:none;
+}
+
+.btn::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:linear-gradient(45deg, transparent 30%, rgba(255,255,255,.1) 50%, transparent 70%);
+    opacity:0;
+    animation:shimmer 2s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+}
+
+@keyframes shimmer {
+    0% { transform:translateX(-100%); opacity:0; }
+    50% { opacity:1; }
+    100% { transform:translateX(100%); opacity:0; }
 }
 
 .btn-primary{
-    background:#ff3b30;
+    background:linear-gradient(135deg, #ff3b30, #ff5449, #ff6b63);
     color:white;
-    box-shadow:0 15px 40px rgba(255,59,48,.35);
+    box-shadow:0 20px 50px rgba(255,59,48,.3), inset 0 1px 0 rgba(255,255,255,.2);
+}
+
+.btn-primary:hover::before{
+    opacity:1;
 }
 
 .btn-secondary{
     background:rgba(255,255,255,.08);
-    border:1px solid rgba(255,255,255,.08);
-    color:white;
+    border:1.5px solid rgba(255,255,255,.28);
+    color:rgba(255,255,255,.95);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.15);
+}
+
+.btn-secondary:hover{
+    border-color:rgba(255,59,48,.5);
+    background:rgba(255,59,48,.1);
 }
 
 .btn:hover{
-    transform:translateY(-6px);
+    transform:translateY(-8px);
+    box-shadow:0 30px 70px rgba(255,59,48,.35);
+}
+
+.btn:active{
+    transform:translateY(-4px);
 }
 
 /* STATS */
 
 .stats{
-    margin-top:80px;
+    margin-top:120px;
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-    gap:25px;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:30px;
+    animation:slideInDown 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.45s both;
 }
 
 .stat{
-    background:rgba(255,255,255,.05);
-    border:1px solid rgba(255,255,255,.08);
+    background:linear-gradient(135deg, rgba(255,59,48,.05), rgba(255,215,0,.02));
+    border:1px solid rgba(255,59,48,.15);
     border-radius:24px;
-    padding:30px;
-    backdrop-filter:blur(10px);
+    padding:45px;
+    backdrop-filter:blur(25px);
+    transition:1s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position:relative;
+    overflow:hidden;
+}
+
+.stat::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:radial-gradient(circle at 100% 0%, rgba(255,59,48,.15), transparent 70%);
+    opacity:0;
+    transition:1s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.stat::after{
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:4px;
+    background:linear-gradient(90deg, #ff3b30, #ff5449, transparent);
+    transform:scaleX(0);
+    transform-origin:left;
+    transition:1s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.stat:hover{
+    transform:translateY(-16px) scale(1.02);
+    background:linear-gradient(135deg, rgba(255,59,48,.1), rgba(255,215,0,.05));
+    border-color:rgba(255,59,48,.35);
+    box-shadow:0 20px 60px rgba(255,59,48,.2), inset 0 1px 0 rgba(255,255,255,.1);
+}
+
+.stat:hover::before{
+    opacity:1;
+}
+
+.stat:hover::after{
+    transform:scaleX(1);
 }
 
 .stat h2{
-    font-size:3rem;
+    font-size:3.2rem;
     color:#ffd700;
-    margin-bottom:10px;
+    margin-bottom:14px;
+    font-weight:800;
+    letter-spacing:-1px;
+    text-shadow:0 0 30px rgba(255,215,0,.2);
 }
 
-/* SECTION */
+.stat p{
+    color:rgba(255,255,255,.72);
+    font-size:.92rem;
+    font-weight:400;
+    letter-spacing:0.6px;
+}
+
+/* SECTIONS */
 
 section{
-    padding:110px 20px;
+    padding:160px 20px;
+    position:relative;
+    z-index:1;
 }
 
 .container{
@@ -207,36 +478,79 @@ section{
 
 .section-title{
     text-align:center;
-    margin-bottom:70px;
+    margin-bottom:100px;
+    animation:fadeInDown 1.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s both;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to {
+        opacity:1;
+        transform:translateY(0);
+    }
 }
 
 .section-title h2{
-    font-size:3.4rem;
-    margin-bottom:15px;
+    font-family:'Playfair Display',serif;
+    font-size:4.5rem;
+    margin-bottom:24px;
+    font-weight:900;
+    letter-spacing:-1.5px;
+    line-height:1.1;
 }
 
 .section-title p{
-    color:#cbd5e1;
-    font-size:1.1rem;
+    color:rgba(255,255,255,.75);
+    font-size:1.15rem;
+    font-weight:300;
+    letter-spacing:0.4px;
+}
+
+#services{
+    background:linear-gradient(180deg, transparent, rgba(255,59,48,.02));
+    border-top:1px solid rgba(255,59,48,.08);
 }
 
 /* CARDS */
 
 .grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-    gap:30px;
+    grid-template-columns:repeat(auto-fit,minmax(380px,1fr));
+    gap:40px;
 }
 
 .card{
-    background:rgba(255,255,255,.05);
-    border:1px solid rgba(255,255,255,.08);
+    background:linear-gradient(135deg, rgba(255,59,48,.04), rgba(255,215,0,.01));
+    border:1px solid rgba(255,59,48,.12);
     border-radius:28px;
-    padding:40px;
-    transition:.35s;
+    padding:55px;
+    transition:1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
     position:relative;
     overflow:hidden;
+    cursor:pointer;
+    animation:fadeInUp 1.3s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
+
+@keyframes fadeInUp {
+    from {
+        opacity:0;
+        transform:translateY(40px) scale(0.95);
+    }
+    to {
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+.card:nth-child(1) { animation-delay:0.1s; }
+.card:nth-child(2) { animation-delay:0.2s; }
+.card:nth-child(3) { animation-delay:0.3s; }
+.card:nth-child(4) { animation-delay:0.4s; }
+.card:nth-child(5) { animation-delay:0.5s; }
+.card:nth-child(6) { animation-delay:0.6s; }
 
 .card::before{
     content:'';
@@ -244,85 +558,200 @@ section{
     top:0;
     left:0;
     width:100%;
-    height:4px;
-    background:linear-gradient(90deg,#ff3b30,#ffd700);
+    height:5px;
+    background:linear-gradient(90deg, #ff3b30 0%, #ff5449 50%, transparent 100%);
+    transform:scaleX(0);
+    transform-origin:left;
+    transition:1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.card::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:radial-gradient(circle at 30% 30%, rgba(255,59,48,.1), transparent 70%);
+    opacity:0;
+    transition:1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    pointer-events:none;
+}
+
+.card-inner{
+    position:relative;
+    z-index:1;
 }
 
 .card:hover{
-    transform:translateY(-12px);
-    border-color:#ff3b30;
-    box-shadow:0 20px 50px rgba(0,0,0,.35);
+    transform:translateY(-20px) scale(1.02);
+    border-color:rgba(255,59,48,.32);
+    background:linear-gradient(135deg, rgba(255,59,48,.08), rgba(255,215,0,.03));
+    box-shadow:0 30px 80px rgba(255,59,48,.25), inset 0 1px 0 rgba(255,255,255,.1);
+}
+
+.card:hover::before{
+    transform:scaleX(1);
+}
+
+.card:hover::after{
+    opacity:1;
 }
 
 .card i{
-    font-size:3rem;
+    font-size:4.5rem;
     color:#ff3b30;
-    margin-bottom:20px;
+    margin-bottom:32px;
+    transition:1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display:inline-block;
+    filter:drop-shadow(0 0 15px rgba(255,59,48,.2));
+}
+
+.card:hover i{
+    transform:scale(1.2) translateY(-10px) rotate(10deg);
 }
 
 .card h3{
-    font-size:1.5rem;
-    margin-bottom:15px;
+    font-size:1.85rem;
+    margin-bottom:20px;
+    font-weight:800;
+    letter-spacing:-0.6px;
 }
 
 .card p{
-    color:#cbd5e1;
-    line-height:1.7;
+    color:rgba(255,255,255,.78);
+    line-height:1.9;
+    margin-bottom:38px;
+    font-size:.97rem;
+    font-weight:300;
 }
 
 .card button{
-    margin-top:25px;
-    padding:14px 22px;
-    border:none;
-    border-radius:14px;
-    background:#ff3b30;
-    color:white;
-    font-weight:700;
+    padding:14px 36px;
+    border:1.5px solid rgba(255,59,48,.35);
+    border-radius:50px;
+    background:linear-gradient(135deg, rgba(255,59,48,.08), rgba(255,59,48,.04));
+    color:#ff3b30;
+    font-weight:800;
     cursor:pointer;
-    transition:.3s;
+    transition:.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+    font-size:.92rem;
+    letter-spacing:0.4px;
+    position:relative;
+    overflow:hidden;
+}
+
+.card button::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:#ff3b30;
+    opacity:0;
+    transition:.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index:-1;
 }
 
 .card button:hover{
-    transform:scale(1.05);
+    color:white;
+    border-color:#ff3b30;
+    transform:translateY(-4px);
+    box-shadow:0 15px 40px rgba(255,59,48,.3);
+}
+
+.card button:hover::before{
+    opacity:1;
 }
 
 /* BOOKING */
 
+#booking{
+    background:linear-gradient(180deg, rgba(255,59,48,.03), rgba(255,215,0,.01));
+    border-top:1px solid rgba(255,59,48,.08);
+    border-bottom:1px solid rgba(255,59,48,.08);
+}
+
 .booking-wrap{
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:50px;
-    align-items:center;
+    gap:70px;
+    align-items:start;
+    animation:fadeInUp 1.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
 }
 
 .panel{
-    background:rgba(255,255,255,.05);
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:30px;
-    padding:45px;
+    background:linear-gradient(135deg, rgba(255,59,48,.05), rgba(255,215,0,.01));
+    border:1px solid rgba(255,59,48,.14);
+    border-radius:28px;
+    padding:60px;
+    backdrop-filter:blur(30px);
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 8px 32px rgba(0,0,0,.2);
+}
+
+.panel::before{
+    content:'';
+    position:absolute;
+    top:-50%;
+    right:-50%;
+    width:100%;
+    height:100%;
+    background:radial-gradient(circle at 100% 0%, rgba(255,59,48,.12), transparent 70%);
+    animation:rotateGradient 8s linear infinite;
+}
+
+@keyframes rotateGradient {
+    0% { transform:rotate(0deg); }
+    100% { transform:rotate(360deg); }
 }
 
 .panel h3{
-    font-size:2.2rem;
+    font-family:'Playfair Display',serif;
+    font-size:2.4rem;
     margin-bottom:20px;
+    font-weight:800;
+    letter-spacing:-0.6px;
+    position:relative;
+    z-index:1;
 }
 
 .panel p{
-    color:#cbd5e1;
-    line-height:1.8;
+    color:rgba(255,255,255,.75);
+    line-height:1.9;
+    margin-bottom:35px;
+    font-weight:300;
+    letter-spacing:0.4px;
+    position:relative;
+    z-index:1;
 }
 
 .booking-form input,
 .booking-form select,
 .booking-form textarea{
     width:100%;
-    padding:18px;
-    border:none;
+    padding:18px 22px;
+    border:1.5px solid rgba(255,255,255,.14);
     border-radius:16px;
-    background:#111c31;
+    background:rgba(255,255,255,.04);
     color:white;
-    margin-bottom:18px;
+    margin-bottom:20px;
     font-size:1rem;
+    font-family:'Sora',sans-serif;
+    transition:.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position:relative;
+    z-index:1;
+}
+
+.booking-form input::placeholder,
+.booking-form select::placeholder,
+.booking-form textarea::placeholder{
+    color:rgba(255,255,255,.48);
+}
+
+.booking-form input:focus,
+.booking-form select:focus,
+.booking-form textarea:focus{
+    outline:none;
+    border-color:rgba(255,59,48,.5);
+    background:rgba(255,59,48,.08);
+    box-shadow:0 0 0 4px rgba(255,59,48,.15), inset 0 1px 0 rgba(255,255,255,.1);
 }
 
 .booking-form button{
@@ -330,114 +759,234 @@ section{
     padding:18px;
     border:none;
     border-radius:16px;
-    background:#ff3b30;
+    background:linear-gradient(135deg, #ff3b30, #ff5449, #ff6b63);
     color:white;
     font-weight:800;
     cursor:pointer;
-    transition:.3s;
-    font-size:1rem;
+    transition:.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+    font-size:1.02rem;
+    position:relative;
+    overflow:hidden;
+    letter-spacing:0.4px;
+    z-index:1;
+    box-shadow:0 15px 40px rgba(255,59,48,.3), inset 0 1px 0 rgba(255,255,255,.2);
 }
 
-.booking-form button:hover{
-    transform:scale(1.03);
+.booking-form button::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:100%;
+    background:linear-gradient(90deg, transparent, rgba(255,255,255,.2), transparent);
+    transition:1s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* PRICE ESTIMATOR */
+.booking-form button:hover:not(:disabled)::before{
+    left:100%;
+}
+
+.booking-form button:hover:not(:disabled){
+    transform:translateY(-6px);
+    box-shadow:0 25px 70px rgba(255,59,48,.4);
+}
+
+.booking-form button:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
+/* ESTIMATOR */
 
 .estimator{
-    margin-top:30px;
-    padding:25px;
+    margin-top:38px;
+    padding:40px;
     border-radius:20px;
-    background:#111c31;
+    background:rgba(255,255,255,.06);
+    border:1.5px solid rgba(255,59,48,.15);
+    position:relative;
+    z-index:1;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.1);
+}
+
+.estimator select{
+    margin-bottom:28px;
 }
 
 .estimate-price{
-    font-size:3rem;
+    font-family:'Playfair Display',serif;
+    font-size:4rem;
     font-weight:900;
     color:#ffd700;
-    margin-top:10px;
+    letter-spacing:-1px;
+    text-shadow:0 0 40px rgba(255,215,0,.25);
 }
 
-/* REVIEWS */
-
-.review-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-    gap:30px;
-}
-
-.review{
-    background:rgba(255,255,255,.05);
-    border:1px solid rgba(255,255,255,.08);
-    padding:35px;
-    border-radius:28px;
-}
-
-.stars{
-    color:#ffd700;
-    margin-bottom:18px;
-}
-
-.review p{
-    color:#cbd5e1;
-    line-height:1.8;
+.estimate-range{
+    color:rgba(255,255,255,.65);
+    font-size:.95rem;
+    margin-top:12px;
+    font-weight:300;
 }
 
 /* FOOTER */
 
 footer{
-    padding:70px 20px;
+    padding:90px 20px;
     text-align:center;
     border-top:1px solid rgba(255,255,255,.08);
-    color:#94a3b8;
+    color:rgba(255,255,255,.65);
+    background:linear-gradient(180deg, rgba(0,0,0,.1), rgba(0,0,0,.4));
+    animation:fadeIn 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s both;
 }
 
-/* FLOATING */
+@keyframes fadeIn {
+    from { opacity:0; }
+    to { opacity:1; }
+}
+
+footer h2{
+    font-family:'Playfair Display',serif;
+    font-size:2.2rem;
+    margin-bottom:18px;
+    color:rgba(255,255,255,.98);
+    font-weight:800;
+    letter-spacing:-0.6px;
+}
+
+footer p{
+    font-weight:300;
+    letter-spacing:0.4px;
+    margin:10px 0;
+}
+
+/* TOAST */
+
+.toast{
+    position:fixed;
+    bottom:30px;
+    right:30px;
+    padding:20px 32px;
+    border-radius:16px;
+    opacity:0;
+    transition:.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform:translateY(40px) scale(0.9) rotateX(10deg);
+    pointer-events:none;
+    z-index:1000;
+    font-weight:600;
+    font-size:.98rem;
+    max-width:420px;
+    border:1.5px solid rgba(255,255,255,.15);
+    backdrop-filter:blur(30px);
+    box-shadow:0 10px 40px rgba(0,0,0,.3);
+}
+
+.toast.show{
+    opacity:1;
+    transform:translateY(0) scale(1) rotateX(0deg);
+    pointer-events:auto;
+}
+
+.toast.success{
+    background:linear-gradient(135deg, rgba(16,185,129,.15), rgba(16,185,129,.08));
+    color:#10b981;
+    border-color:rgba(16,185,129,.3);
+}
+
+.toast.error{
+    background:linear-gradient(135deg, rgba(239,68,68,.15), rgba(239,68,68,.08));
+    color:#ef4444;
+    border-color:rgba(239,68,68,.3);
+}
+
+.toast.info{
+    background:linear-gradient(135deg, rgba(59,130,246,.15), rgba(59,130,246,.08));
+    color:#3b82f6;
+    border-color:rgba(59,130,246,.3);
+}
+
+/* FLOAT BTN */
 
 .float-btn{
     position:fixed;
-    bottom:25px;
-    right:25px;
-    width:75px;
-    height:75px;
-    background:#ff3b30;
+    bottom:30px;
+    right:30px;
+    width:80px;
+    height:80px;
+    background:linear-gradient(135deg, #ff3b30, #ff5449, #ff6b63);
     border-radius:50%;
     display:flex;
     justify-content:center;
     align-items:center;
-    text-decoration:none;
     color:white;
-    font-size:1.9rem;
-    box-shadow:0 15px 40px rgba(255,59,48,.4);
-    z-index:999;
-    transition:.3s;
+    font-size:2rem;
+    box-shadow:0 20px 60px rgba(255,59,48,.35), inset 0 1px 0 rgba(255,255,255,.2);
+    z-index:998;
+    transition:.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border:none;
+    cursor:pointer;
+    animation:floatIn 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 1.2s both;
+    position:relative;
+    overflow:hidden;
 }
 
-.float-btn:hover{
-    transform:scale(1.1);
-}
-
-#toast{
-    position:fixed;
-    bottom:120px;
-    right:25px;
-    background:#10b981;
-    padding:18px 26px;
-    border-radius:16px;
+.float-btn::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:radial-gradient(circle at 30% 30%, rgba(255,255,255,.3), transparent);
     opacity:0;
-    transition:.4s;
-    pointer-events:none;
-    font-weight:700;
+    transition:.9s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-#toast.show{
+@keyframes floatIn {
+    from {
+        opacity:0;
+        transform:translateY(60px) scale(0.7);
+    }
+    to {
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+.float-btn:hover::before{
     opacity:1;
 }
 
-@media(max-width:950px){
+.float-btn:hover{
+    transform:scale(1.18) rotate(10deg);
+    box-shadow:0 35px 90px rgba(255,59,48,.45);
+}
+
+.float-btn:active{
+    transform:scale(1.1);
+}
+
+/* SPINNER */
+
+.spinner{
+    display:inline-block;
+    width:18px;
+    height:18px;
+    border:3px solid rgba(255,255,255,.3);
+    border-radius:50%;
+    border-top-color:white;
+    animation:spin 0.8s linear infinite;
+    margin-right:10px;
+}
+
+@keyframes spin {
+    to { transform:rotate(360deg); }
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1024px){
 
     .hero h1{
-        font-size:3.5rem;
+        font-size:5rem;
     }
 
     .booking-wrap{
@@ -447,9 +996,93 @@ footer{
     nav{
         display:none;
     }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    section{
+        padding:120px 20px;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .hero h1{
+        font-size:3.5rem;
+    }
+
+    .hero::before,
+    .hero::after{
+        display:none;
+    }
+
+    .hero-grid{
+        opacity:0.2;
+    }
+
+    .panel{
+        padding:35px;
+    }
+
+    .card{
+        padding:35px;
+    }
+
+    .float-btn{
+        width:70px;
+        height:70px;
+        font-size:1.7rem;
+        bottom:20px;
+        right:20px;
+    }
+
+    .toast{
+        right:20px;
+        left:20px;
+        bottom:20px;
+    }
+
+}
+
+@media(max-width:480px){
+
+    .hero{
+        padding:120px 16px 50px;
+    }
+
+    .hero h1{
+        font-size:2.5rem;
+        margin-bottom:20px;
+    }
+
+    .badge{
+        font-size:.7rem;
+        padding:10px 18px;
+    }
+
+    .btn{
+        padding:14px 32px;
+        font-size:.85rem;
+    }
+
+    section{
+        padding:80px 16px;
+    }
+
+    .section-title h2{
+        font-size:2.2rem;
+    }
+
+    .card i{
+        font-size:2.8rem;
+    }
+
 }
 
 </style>
+
 </head>
 
 <body>
@@ -457,1178 +1090,315 @@ footer{
 <header>
     <div class="nav">
         <div class="logo">PARKWAY <span>MARATHON</span></div>
-
         <nav>
             <a href="#services">Services</a>
-            <a href="#booking">Booking</a>
-            <a href="#reviews">Reviews</a>
+            <a href="#booking">Book</a>
+            <a href="#contact">Contact</a>
         </nav>
     </div>
 </header>
 
 <section class="hero">
-
+    <div class="hero-grid"></div>
     <div class="hero-content">
-
-        <div class="badge">
-            PREMIUM AUTO CARE • TRUSTED BY 12,000+ DRIVERS
-        </div>
-
-        <h1>
-            Modern Auto Repair That Actually Feels Premium
-        </h1>
-
-        <p>
-            Same-day service, advanced diagnostics,
-            luxury detailing, and transparent pricing
-            designed for modern drivers who want speed,
-            trust, and quality.
-        </p>
-
+        <div class="badge">🏆 PREMIUM AUTO CARE • TRUSTED BY 12,000+ DRIVERS</div>
+        
+        <h1>Automotive Excellence Redefined</h1>
+        
+        <p>Experience the pinnacle of automotive service with our precision-engineered solutions, advanced diagnostics, and uncompromising attention to detail.</p>
+        
         <div class="hero-buttons">
             <a href="#booking" class="btn btn-primary">
-                <i class="fa-solid fa-calendar"></i>
-                Book Appointment
+                <i class="fa-solid fa-calendar"></i> Schedule Service
             </a>
-
             <a href="#services" class="btn btn-secondary">
-                <i class="fa-solid fa-screwdriver-wrench"></i>
-                Explore Services
+                <i class="fa-solid fa-screwdriver-wrench"></i> View Services
             </a>
         </div>
 
         <div class="stats">
-
             <div class="stat">
                 <h2 class="counter" data-target="12000">0</h2>
-                <p>Drivers Served</p>
+                <p>Satisfied Clients</p>
             </div>
-
             <div class="stat">
-                <h2>4.9★</h2>
-                <p>Google Rating</p>
+                <h2>4.9/5.0</h2>
+                <p>Excellence Rating</p>
             </div>
-
             <div class="stat">
                 <h2>15+</h2>
-                <p>Years Experience</p>
+                <p>Years Mastery</p>
             </div>
-
             <div class="stat">
                 <h2>24/7</h2>
-                <p>Emergency Support</p>
+                <p>Emergency Ready</p>
             </div>
-
         </div>
-
     </div>
-
 </section>
 
 <section id="services">
-
     <div class="container">
-
         <div class="section-title">
             <h2>Premium Services</h2>
-            <p>Interactive service cards with working quote estimates.</p>
+            <p>Engineered excellence for every automotive need</p>
         </div>
 
         <div class="grid">
-
             <div class="card">
-                <i class="fa-solid fa-oil-can"></i>
-                <h3>Oil Changes</h3>
-                <p>Premium synthetic oil and multi-point inspections.</p>
-                <button onclick="showQuote('Oil Change','$59 - $89')">
-                    Get Quote
-                </button>
+                <div class="card-inner">
+                    <i class="fa-solid fa-oil-can"></i>
+                    <h3>Oil & Maintenance</h3>
+                    <p>Premium synthetic formulations with advanced multi-point diagnostics, fluid optimization, and comprehensive system analysis.</p>
+                    <button onclick="showQuote('Oil & Maintenance', '$59 - $89')">Get Quote</button>
+                </div>
             </div>
 
             <div class="card">
-                <i class="fa-solid fa-car-burst"></i>
-                <h3>Brake Repair</h3>
-                <p>Brake pads, rotors, calipers, and complete testing.</p>
-                <button onclick="showQuote('Brake Repair','$149 - $499')">
-                    Get Quote
-                </button>
+                <div class="card-inner">
+                    <i class="fa-solid fa-car-burst"></i>
+                    <h3>Brake Systems</h3>
+                    <p>Professional brake engineering including premium components, ABS optimization, performance testing, and safety certification.</p>
+                    <button onclick="showQuote('Brake Systems', '$149 - $499')">Get Quote</button>
+                </div>
             </div>
 
             <div class="card">
-                <i class="fa-solid fa-microchip"></i>
-                <h3>Diagnostics</h3>
-                <p>Advanced computer diagnostics and engine scanning.</p>
-                <button onclick="showQuote('Diagnostics','$49 - $199')">
-                    Get Quote
-                </button>
+                <div class="card-inner">
+                    <i class="fa-solid fa-microchip"></i>
+                    <h3>Diagnostics+</h3>
+                    <p>State-of-the-art scanning technology with real-time performance metrics, detailed analysis, and predictive maintenance planning.</p>
+                    <button onclick="showQuote('Diagnostics+', '$49 - $199')">Get Quote</button>
+                </div>
             </div>
 
             <div class="card">
-                <i class="fa-solid fa-snowflake"></i>
-                <h3>A/C Repair</h3>
-                <p>Complete climate system inspections and repairs.</p>
-                <button onclick="showQuote('A/C Repair','$89 - $599')">
-                    Get Quote
-                </button>
+                <div class="card-inner">
+                    <i class="fa-solid fa-snowflake"></i>
+                    <h3>Climate Control</h3>
+                    <p>Complete HVAC system restoration with refrigerant management, compressor optimization, and temperature precision calibration.</p>
+                    <button onclick="showQuote('Climate Control', '$89 - $599')">Get Quote</button>
+                </div>
             </div>
 
             <div class="card">
-                <i class="fa-solid fa-spray-can-sparkles"></i>
-                <h3>Luxury Detailing</h3>
-                <p>Interior deep cleaning and ceramic protection options.</p>
-                <button onclick="showQuote('Luxury Detailing','$129 - $499')">
-                    Get Quote
-                </button>
+                <div class="card-inner">
+                    <i class="fa-solid fa-spray-can-sparkles"></i>
+                    <h3>Luxury Detailing</h3>
+                    <p>Professional-grade restoration featuring ceramic coatings, interior deep conditioning, paint correction, and premium protection.</p>
+                    <button onclick="showQuote('Luxury Detailing', '$129 - $499')">Get Quote</button>
+                </div>
             </div>
 
             <div class="card">
-                <i class="fa-solid fa-engine-warning"></i>
-                <h3>Engine Repair</h3>
-                <p>Performance tuning, repairs, and full rebuild services.</p>
-                <button onclick="showQuote('Engine Repair','$499 - $5,000+')">
-                    Get Quote
-                </button>
+                <div class="card-inner">
+                    <i class="fa-solid fa-engine"></i>
+                    <h3>Performance Engineering</h3>
+                    <p>Advanced engine optimization with precision tuning, comprehensive repair services, and performance enhancement packages.</p>
+                    <button onclick="showQuote('Performance Engineering', '$499 - $5,000+')">Get Quote</button>
+                </div>
             </div>
-
         </div>
-
     </div>
-
 </section>
 
 <section id="booking">
-
     <div class="container booking-wrap">
-
         <div class="panel">
-
-            <h3>Instant Service Estimator</h3>
-
-            <p>
-                Select your service below to estimate pricing instantly.
-            </p>
-
+            <h3>💰 Pricing Estimator</h3>
+            <p>Get accurate pricing instantly for your specific service needs.</p>
+            
             <div class="estimator">
-
                 <select id="estimateSelect" onchange="updateEstimate()">
-                    <option value="59">Oil Change</option>
-                    <option value="149">Brake Repair</option>
-                    <option value="89">A/C Service</option>
-                    <option value="129">Detailing</option>
-                    <option value="499">Engine Repair</option>
+                    <option value="0">Select service...</option>
+                    <option value="74">Oil & Maintenance - $59-$89</option>
+                    <option value="324">Brake Systems - $149-$499</option>
+                    <option value="124">Climate Control - $89-$159</option>
+                    <option value="309">Luxury Detailing - $129-$489</option>
+                    <option value="2749">Performance Engineering - $499-$5,000</option>
                 </select>
-
-                <div class="estimate-price" id="estimatePrice">
-                    $59
-                </div>
-
+                
+                <div class="estimate-price" id="estimatePrice">$0</div>
+                <div class="estimate-range" id="estimateRange">Select a service to see pricing</div>
             </div>
-
         </div>
 
         <div class="panel booking-form">
-
-            <h3>Book Appointment</h3>
-
-            <input type="text" id="name" placeholder="Full Name">
-
-            <input type="tel" id="phone" placeholder="Phone Number">
-
-            <select id="service">
-                <option>Select Service</option>
-                <option>Oil Change</option>
-                <option>Brake Repair</option>
-                <option>Diagnostics</option>
-                <option>A/C Repair</option>
+            <h3>📅 Reserve Your Slot</h3>
+            
+            <input type="text" id="name" placeholder="Full Name" maxlength="50">
+            <input type="tel" id="phone" placeholder="Phone Number" maxlength="20">
+            
+            <select id="service" required>
+                <option value="">Select Service</option>
+                <option>Oil & Maintenance</option>
+                <option>Brake Systems</option>
+                <option>Diagnostics+</option>
+                <option>Climate Control</option>
                 <option>Luxury Detailing</option>
-                <option>Engine Repair</option>
+                <option>Performance Engineering</option>
             </select>
 
-            <textarea id="message" rows="5" placeholder="Tell us about your vehicle..."></textarea>
+            <textarea id="message" rows="4" placeholder="Vehicle details and special requests..." maxlength="300"></textarea>
 
-            <button onclick="bookAppointment()">
-                Schedule Appointment
+            <button id="submitBtn" onclick="bookAppointment()">
+                <span class="btn-text">Confirm Reservation</span>
             </button>
-
         </div>
-
     </div>
-
 </section>
 
-<section id="reviews">
-
-    <div class="container">
-
-        <div class="section-title">
-            <h2>Customer Reviews</h2>
-            <p>Real-looking premium review section.</p>
-        </div>
-
-        <div class="review-grid">
-
-            <div class="review">
-                <div class="stars">★★★★★</div>
-                <p>
-                    “This place feels more premium than a dealership.
-                    Fast repairs and the booking system was super easy.”
-                </p>
-                <br>
-                <strong>— Michael R.</strong>
-            </div>
-
-            <div class="review">
-                <div class="stars">★★★★★</div>
-                <p>
-                    “Transparent pricing and amazing customer service.
-                    Definitely my new repair shop.”
-                </p>
-                <br>
-                <strong>— Sarah T.</strong>
-            </div>
-
-            <div class="review">
-                <div class="stars">★★★★★</div>
-                <p>
-                    “The detailing package made my car look brand new.
-                    Website feels modern and actually works.”
-                </p>
-                <br>
-                <strong>— Jason K.</strong>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<footer>
-
+<footer id="contact">
     <h2>PARKWAY MARATHON</h2>
-
-    <br>
-
-    <p>
-        Premium Auto Care • Trusted Service • Modern Experience
-    </p>
-
-    <br>
-
-    <p>
-        © 2026 Parkway Marathon Service
-    </p>
-
+    <p>Premium Automotive Excellence • Precision Engineering • Elite Service</p>
+    <p>© 2026 Parkway Marathon. Perfection in every detail.</p>
 </footer>
 
-<a href="tel:6515550190" class="float-btn">
+<button class="float-btn" onclick="document.location='tel:6515550190'" title="Call Now">
     <i class="fa-solid fa-phone"></i>
-</a>
-
-<div id="toast"></div>
+</button>
 
 <script>
 
-function showToast(message){
+function showToast(message, type = 'info', duration = 4000) {
+    const existingToast = document.querySelector('.toast.show');
+    if (existingToast) {
+        existingToast.remove();
+    }
 
-    const toast =
-    document.getElementById('toast');
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    toast.textContent = message;
+    document.body.appendChild(toast);
 
-    toast.innerText = message;
-
-    toast.classList.add('show');
+    requestAnimationFrame(() => {
+        toast.classList.add('show');
+    });
 
     setTimeout(() => {
         toast.classList.remove('show');
-    },3000);
+        setTimeout(() => toast.remove(), 800);
+    }, duration);
 }
 
-function showQuote(service,price){
-
-    showToast(service + " Estimate: " + price);
+function showQuote(service, price) {
+    showToast(`${service} estimated at ${price}`, 'info', 4200);
 }
 
-function updateEstimate(){
-
-    const value =
-    document.getElementById('estimateSelect').value;
-
-    document.getElementById('estimatePrice').innerText =
-    "$" + value;
+function updateEstimate() {
+    const select = document.getElementById('estimateSelect');
+    const price = parseFloat(select.value);
+    const priceDisplay = document.getElementById('estimatePrice');
+    const rangeDisplay = document.getElementById('estimateRange');
+    
+    if (price === 0) {
+        priceDisplay.textContent = '$0';
+        rangeDisplay.textContent = 'Select a service to see pricing';
+    } else {
+        const formattedPrice = '$' + price.toFixed(0);
+        priceDisplay.textContent = formattedPrice;
+        
+        const selectedOption = select.options[select.selectedIndex].text;
+        const match = selectedOption.match(/\$([0-9,]+[^)]*)\)/);
+        if (match) {
+            rangeDisplay.textContent = 'Estimated price: ' + match[1];
+        }
+    }
 }
 
-function bookAppointment(){
+async function bookAppointment() {
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const service = document.getElementById('service').value;
+    const btn = document.getElementById('submitBtn');
+    const btnText = btn.querySelector('.btn-text');
 
-    const name =
-    document.getElementById('name').value.trim();
-
-    const phone =
-    document.getElementById('phone').value.trim();
-
-    const service =
-    document.getElementById('service').value;
-
-    if(!name || !phone || service === 'Select Service'){
-
-        showToast('Please fill out all required fields.');
-
+    if (!name) {
+        showToast('Please enter your name', 'error', 3500);
         return;
     }
 
-    showToast('Appointment Request Sent Successfully!');
+    if (!phone || phone.length < 10) {
+        showToast('Please enter a valid phone number', 'error', 3500);
+        return;
+    }
+
+    if (service === '' || service === 'Select Service') {
+        showToast('Please select a service', 'error', 3500);
+        return;
+    }
+
+    btn.disabled = true;
+    btn.classList.add('loading');
+    btnText.innerHTML = '<span class="spinner"></span>Processing...';
+
+    await new Promise(resolve => setTimeout(resolve, 2200));
+
+    btn.disabled = false;
+    btn.classList.remove('loading');
+    btnText.textContent = 'Confirm Reservation';
+
+    showToast(`✓ Reservation confirmed! We'll call ${phone} to schedule.`, 'success', 5500);
 
     document.getElementById('name').value = '';
     document.getElementById('phone').value = '';
-    document.getElementById('service').value = 'Select Service';
+    document.getElementById('service').value = '';
     document.getElementById('message').value = '';
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 document.querySelectorAll('.counter').forEach(counter => {
-
+    const target = +counter.getAttribute('data-target');
+    let current = 0;
+    
     const update = () => {
-
-        const target =
-        +counter.getAttribute('data-target');
-
-        const current =
-        +counter.innerText;
-
-        const increment =
-        target / 100;
-
-        if(current < target){
-
-            counter.innerText =
-            Math.ceil(current + increment);
-
-            setTimeout(update,20);
-
+        const increment = target / 100;
+        current += increment;
+        
+        if (current < target) {
+            counter.innerText = Math.ceil(current);
+            requestAnimationFrame(update);
         } else {
-
-            counter.innerText =
-            target.toLocaleString();
+            counter.innerText = target.toLocaleString();
         }
     };
 
     update();
 });
 
-</script>
-
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Parkway Marathon Premium Auto Care</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-<style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    font-family:'Inter',sans-serif;
-    background:#08111f;
-    color:white;
-    overflow-x:hidden;
-}
-
-/* NAV */
-
-header{
-    position:fixed;
-    top:0;
-    width:100%;
-    z-index:999;
-    background:rgba(8,17,31,.8);
-    backdrop-filter:blur(18px);
-    border-bottom:1px solid rgba(255,255,255,.08);
-}
-
-.nav{
-    max-width:1400px;
-    margin:auto;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:20px;
-}
-
-.logo{
-    font-size:2rem;
-    font-weight:900;
-}
-
-.logo span{
-    color:#ff3b30;
-}
-
-nav{
-    display:flex;
-    gap:30px;
-}
-
-nav a{
-    color:white;
-    text-decoration:none;
-    font-weight:600;
-    transition:.3s;
-}
-
-nav a:hover{
-    color:#ff3b30;
-}
-
-/* HERO */
-
-.hero{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:140px 20px 80px;
-    position:relative;
-    overflow:hidden;
-    background:
-    radial-gradient(circle at top right, rgba(255,59,48,.35), transparent 30%),
-    radial-gradient(circle at bottom left, rgba(255,215,0,.15), transparent 30%),
-    linear-gradient(135deg,#08111f,#10243d);
-}
-
-.hero::before{
-    content:'';
-    position:absolute;
-    width:500px;
-    height:500px;
-    background:#ff3b30;
-    filter:blur(180px);
-    opacity:.15;
-    top:-150px;
-    right:-150px;
-}
-
-.hero-content{
-    max-width:1100px;
-    text-align:center;
-    position:relative;
-    z-index:2;
-}
-
-.badge{
-    display:inline-block;
-    padding:12px 22px;
-    border-radius:999px;
-    background:rgba(255,255,255,.08);
-    border:1px solid rgba(255,255,255,.08);
-    margin-bottom:30px;
-    font-size:.85rem;
-    letter-spacing:1px;
-}
-
-.hero h1{
-    font-size:5.5rem;
-    line-height:1;
-    font-weight:900;
-    margin-bottom:30px;
-}
-
-.hero p{
-    color:#cbd5e1;
-    max-width:800px;
-    margin:auto;
-    font-size:1.2rem;
-    line-height:1.8;
-    margin-bottom:45px;
-}
-
-.hero-buttons{
-    display:flex;
-    justify-content:center;
-    gap:20px;
-    flex-wrap:wrap;
-}
-
-.btn{
-    padding:18px 38px;
-    border-radius:18px;
-    text-decoration:none;
-    font-weight:800;
-    transition:.3s;
-    display:inline-flex;
-    align-items:center;
-    gap:12px;
-}
-
-.btn-primary{
-    background:#ff3b30;
-    color:white;
-    box-shadow:0 15px 40px rgba(255,59,48,.35);
-}
-
-.btn-secondary{
-    background:rgba(255,255,255,.08);
-    border:1px solid rgba(255,255,255,.08);
-    color:white;
-}
-
-.btn:hover{
-    transform:translateY(-6px);
-}
-
-/* STATS */
-
-.stats{
-    margin-top:80px;
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-    gap:25px;
-}
-
-.stat{
-    background:rgba(255,255,255,.05);
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:24px;
-    padding:30px;
-    backdrop-filter:blur(10px);
-}
-
-.stat h2{
-    font-size:3rem;
-    color:#ffd700;
-    margin-bottom:10px;
-}
-
-/* SECTION */
-
-section{
-    padding:110px 20px;
-}
-
-.container{
-    max-width:1400px;
-    margin:auto;
-}
-
-.section-title{
-    text-align:center;
-    margin-bottom:70px;
-}
-
-.section-title h2{
-    font-size:3.4rem;
-    margin-bottom:15px;
-}
-
-.section-title p{
-    color:#cbd5e1;
-    font-size:1.1rem;
-}
-
-/* CARDS */
-
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-    gap:30px;
-}
-
-.card{
-    background:rgba(255,255,255,.05);
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:28px;
-    padding:40px;
-    transition:.35s;
-    position:relative;
-    overflow:hidden;
-}
-
-.card::before{
-    content:'';
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:4px;
-    background:linear-gradient(90deg,#ff3b30,#ffd700);
-}
-
-.card:hover{
-    transform:translateY(-12px);
-    border-color:#ff3b30;
-    box-shadow:0 20px 50px rgba(0,0,0,.35);
-}
-
-.card i{
-    font-size:3rem;
-    color:#ff3b30;
-    margin-bottom:20px;
-}
-
-.card h3{
-    font-size:1.5rem;
-    margin-bottom:15px;
-}
-
-.card p{
-    color:#cbd5e1;
-    line-height:1.7;
-}
-
-.card button{
-    margin-top:25px;
-    padding:14px 22px;
-    border:none;
-    border-radius:14px;
-    background:#ff3b30;
-    color:white;
-    font-weight:700;
-    cursor:pointer;
-    transition:.3s;
-}
-
-.card button:hover{
-    transform:scale(1.05);
-}
-
-/* BOOKING */
-
-.booking-wrap{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:50px;
-    align-items:center;
-}
-
-.panel{
-    background:rgba(255,255,255,.05);
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:30px;
-    padding:45px;
-}
-
-.panel h3{
-    font-size:2.2rem;
-    margin-bottom:20px;
-}
-
-.panel p{
-    color:#cbd5e1;
-    line-height:1.8;
-}
-
-.booking-form input,
-.booking-form select,
-.booking-form textarea{
-    width:100%;
-    padding:18px;
-    border:none;
-    border-radius:16px;
-    background:#111c31;
-    color:white;
-    margin-bottom:18px;
-    font-size:1rem;
-}
-
-.booking-form button{
-    width:100%;
-    padding:18px;
-    border:none;
-    border-radius:16px;
-    background:#ff3b30;
-    color:white;
-    font-weight:800;
-    cursor:pointer;
-    transition:.3s;
-    font-size:1rem;
-}
-
-.booking-form button:hover{
-    transform:scale(1.03);
-}
-
-/* PRICE ESTIMATOR */
-
-.estimator{
-    margin-top:30px;
-    padding:25px;
-    border-radius:20px;
-    background:#111c31;
-}
-
-.estimate-price{
-    font-size:3rem;
-    font-weight:900;
-    color:#ffd700;
-    margin-top:10px;
-}
-
-/* REVIEWS */
-
-.review-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-    gap:30px;
-}
-
-.review{
-    background:rgba(255,255,255,.05);
-    border:1px solid rgba(255,255,255,.08);
-    padding:35px;
-    border-radius:28px;
-}
-
-.stars{
-    color:#ffd700;
-    margin-bottom:18px;
-}
-
-.review p{
-    color:#cbd5e1;
-    line-height:1.8;
-}
-
-/* FOOTER */
-
-footer{
-    padding:70px 20px;
-    text-align:center;
-    border-top:1px solid rgba(255,255,255,.08);
-    color:#94a3b8;
-}
-
-/* FLOATING */
-
-.float-btn{
-    position:fixed;
-    bottom:25px;
-    right:25px;
-    width:75px;
-    height:75px;
-    background:#ff3b30;
-    border-radius:50%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-decoration:none;
-    color:white;
-    font-size:1.9rem;
-    box-shadow:0 15px 40px rgba(255,59,48,.4);
-    z-index:999;
-    transition:.3s;
-}
-
-.float-btn:hover{
-    transform:scale(1.1);
-}
-
-#toast{
-    position:fixed;
-    bottom:120px;
-    right:25px;
-    background:#10b981;
-    padding:18px 26px;
-    border-radius:16px;
-    opacity:0;
-    transition:.4s;
-    pointer-events:none;
-    font-weight:700;
-}
-
-#toast.show{
-    opacity:1;
-}
-
-@media(max-width:950px){
-
-    .hero h1{
-        font-size:3.5rem;
-    }
-
-    .booking-wrap{
-        grid-template-columns:1fr;
-    }
-
-    nav{
-        display:none;
-    }
-}
-
-</style>
-</head>
-
-<body>
-
-<header>
-    <div class="nav">
-        <div class="logo">PARKWAY <span>MARATHON</span></div>
-
-        <nav>
-            <a href="#services">Services</a>
-            <a href="#booking">Booking</a>
-            <a href="#reviews">Reviews</a>
-        </nav>
-    </div>
-</header>
-
-<section class="hero">
-
-    <div class="hero-content">
-
-        <div class="badge">
-            PREMIUM AUTO CARE • TRUSTED BY 12,000+ DRIVERS
-        </div>
-
-        <h1>
-            Modern Auto Repair That Actually Feels Premium
-        </h1>
-
-        <p>
-            Same-day service, advanced diagnostics,
-            luxury detailing, and transparent pricing
-            designed for modern drivers who want speed,
-            trust, and quality.
-        </p>
-
-        <div class="hero-buttons">
-            <a href="#booking" class="btn btn-primary">
-                <i class="fa-solid fa-calendar"></i>
-                Book Appointment
-            </a>
-
-            <a href="#services" class="btn btn-secondary">
-                <i class="fa-solid fa-screwdriver-wrench"></i>
-                Explore Services
-            </a>
-        </div>
-
-        <div class="stats">
-
-            <div class="stat">
-                <h2 class="counter" data-target="12000">0</h2>
-                <p>Drivers Served</p>
-            </div>
-
-            <div class="stat">
-                <h2>4.9★</h2>
-                <p>Google Rating</p>
-            </div>
-
-            <div class="stat">
-                <h2>15+</h2>
-                <p>Years Experience</p>
-            </div>
-
-            <div class="stat">
-                <h2>24/7</h2>
-                <p>Emergency Support</p>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<section id="services">
-
-    <div class="container">
-
-        <div class="section-title">
-            <h2>Premium Services</h2>
-            <p>Interactive service cards with working quote estimates.</p>
-        </div>
-
-        <div class="grid">
-
-            <div class="card">
-                <i class="fa-solid fa-oil-can"></i>
-                <h3>Oil Changes</h3>
-                <p>Premium synthetic oil and multi-point inspections.</p>
-                <button onclick="showQuote('Oil Change','$59 - $89')">
-                    Get Quote
-                </button>
-            </div>
-
-            <div class="card">
-                <i class="fa-solid fa-car-burst"></i>
-                <h3>Brake Repair</h3>
-                <p>Brake pads, rotors, calipers, and complete testing.</p>
-                <button onclick="showQuote('Brake Repair','$149 - $499')">
-                    Get Quote
-                </button>
-            </div>
-
-            <div class="card">
-                <i class="fa-solid fa-microchip"></i>
-                <h3>Diagnostics</h3>
-                <p>Advanced computer diagnostics and engine scanning.</p>
-                <button onclick="showQuote('Diagnostics','$49 - $199')">
-                    Get Quote
-                </button>
-            </div>
-
-            <div class="card">
-                <i class="fa-solid fa-snowflake"></i>
-                <h3>A/C Repair</h3>
-                <p>Complete climate system inspections and repairs.</p>
-                <button onclick="showQuote('A/C Repair','$89 - $599')">
-                    Get Quote
-                </button>
-            </div>
-
-            <div class="card">
-                <i class="fa-solid fa-spray-can-sparkles"></i>
-                <h3>Luxury Detailing</h3>
-                <p>Interior deep cleaning and ceramic protection options.</p>
-                <button onclick="showQuote('Luxury Detailing','$129 - $499')">
-                    Get Quote
-                </button>
-            </div>
-
-            <div class="card">
-                <i class="fa-solid fa-engine-warning"></i>
-                <h3>Engine Repair</h3>
-                <p>Performance tuning, repairs, and full rebuild services.</p>
-                <button onclick="showQuote('Engine Repair','$499 - $5,000+')">
-                    Get Quote
-                </button>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<section id="booking">
-
-    <div class="container booking-wrap">
-
-        <div class="panel">
-
-            <h3>Instant Service Estimator</h3>
-
-            <p>
-                Select your service below to estimate pricing instantly.
-            </p>
-
-            <div class="estimator">
-
-                <select id="estimateSelect" onchange="updateEstimate()">
-                    <option value="59">Oil Change</option>
-                    <option value="149">Brake Repair</option>
-                    <option value="89">A/C Service</option>
-                    <option value="129">Detailing</option>
-                    <option value="499">Engine Repair</option>
-                </select>
-
-                <div class="estimate-price" id="estimatePrice">
-                    $59
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="panel booking-form">
-
-            <h3>Book Appointment</h3>
-
-            <input type="text" id="name" placeholder="Full Name">
-
-            <input type="tel" id="phone" placeholder="Phone Number">
-
-            <select id="service">
-                <option>Select Service</option>
-                <option>Oil Change</option>
-                <option>Brake Repair</option>
-                <option>Diagnostics</option>
-                <option>A/C Repair</option>
-                <option>Luxury Detailing</option>
-                <option>Engine Repair</option>
-            </select>
-
-            <textarea id="message" rows="5" placeholder="Tell us about your vehicle..."></textarea>
-
-            <button onclick="bookAppointment()">
-                Schedule Appointment
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
-
-<section id="reviews">
-
-    <div class="container">
-
-        <div class="section-title">
-            <h2>Customer Reviews</h2>
-            <p>Real-looking premium review section.</p>
-        </div>
-
-        <div class="review-grid">
-
-            <div class="review">
-                <div class="stars">★★★★★</div>
-                <p>
-                    “This place feels more premium than a dealership.
-                    Fast repairs and the booking system was super easy.”
-                </p>
-                <br>
-                <strong>— Michael R.</strong>
-            </div>
-
-            <div class="review">
-                <div class="stars">★★★★★</div>
-                <p>
-                    “Transparent pricing and amazing customer service.
-                    Definitely my new repair shop.”
-                </p>
-                <br>
-                <strong>— Sarah T.</strong>
-            </div>
-
-            <div class="review">
-                <div class="stars">★★★★★</div>
-                <p>
-                    “The detailing package made my car look brand new.
-                    Website feels modern and actually works.”
-                </p>
-                <br>
-                <strong>— Jason K.</strong>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<footer>
-
-    <h2>PARKWAY MARATHON</h2>
-
-    <br>
-
-    <p>
-        Premium Auto Care • Trusted Service • Modern Experience
-    </p>
-
-    <br>
-
-    <p>
-        © 2026 Parkway Marathon Service
-    </p>
-
-</footer>
-
-<a href="tel:6515550190" class="float-btn">
-    <i class="fa-solid fa-phone"></i>
-</a>
-
-<div id="toast"></div>
-
-<script>
-
-function showToast(message){
-
-    const toast =
-    document.getElementById('toast');
-
-    toast.innerText = message;
-
-    toast.classList.add('show');
-
-    setTimeout(() => {
-        toast.classList.remove('show');
-    },3000);
-}
-
-function showQuote(service,price){
-
-    showToast(service + " Estimate: " + price);
-}
-
-function updateEstimate(){
-
-    const value =
-    document.getElementById('estimateSelect').value;
-
-    document.getElementById('estimatePrice').innerText =
-    "$" + value;
-}
-
-function bookAppointment(){
-
-    const name =
-    document.getElementById('name').value.trim();
-
-    const phone =
-    document.getElementById('phone').value.trim();
-
-    const service =
-    document.getElementById('service').value;
-
-    if(!name || !phone || service === 'Select Service'){
-
-        showToast('Please fill out all required fields.');
-
-        return;
-    }
-
-    showToast('Appointment Request Sent Successfully!');
-
-    document.getElementById('name').value = '';
-    document.getElementById('phone').value = '';
-    document.getElementById('service').value = 'Select Service';
-    document.getElementById('message').value = '';
-}
-
-document.querySelectorAll('.counter').forEach(counter => {
-
-    const update = () => {
-
-        const target =
-        +counter.getAttribute('data-target');
-
-        const current =
-        +counter.innerText;
-
-        const increment =
-        target / 100;
-
-        if(current < target){
-
-            counter.innerText =
-            Math.ceil(current + increment);
-
-            setTimeout(update,20);
-
-        } else {
-
-            counter.innerText =
-            target.toLocaleString();
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href !== '#') {
+            e.preventDefault();
+            const element = document.querySelector(href);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         }
-    };
+    });
+});
 
-    update();
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -80px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0) scale(1)';
+        }
+    });
+}, observerOptions);
+
+document.querySelectorAll('.card').forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(30px) scale(0.95)';
+    card.style.transition = '1.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
+    observer.observe(card);
 });
 
 </script>
